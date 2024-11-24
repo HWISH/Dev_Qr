@@ -15,4 +15,3 @@ jobs:
         run: |
          docker login -u helouich -p ${{ secrets.DOCKER_HUB_TOKEN }} 
          docker push helouich/qr-code-api:latest
-        
