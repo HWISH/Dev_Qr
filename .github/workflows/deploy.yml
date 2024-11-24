@@ -12,4 +12,6 @@ jobs:
       - name: build docker image
         run: docker build ./api/ -t helouich/qr-code-api:latest
       - name: push docker image
-        run: docker push helouich/qr-code-api:latest
+        run: |
+         docker login -u helouich -p ${{ secrets.DOCKER_HUB_TOKEN }} 
+         docker push helouich/qr-code-api:latest
