@@ -3,15 +3,16 @@ on:
   [workflow_dispatch]
 
 jobs: 
-  publish_images :
+  publish_images:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: build docker image
+      - name: Build Docker image
         run: docker build ./api/ -t helouich/qr-code-api:latest
-      - name: push docker image
+
+      - name: Push Docker image
         run: |
-         docker login -u helouich -p ${{ secrets.DOCKER_HUB_TOKEN }} 
-         docker push helouich/qr-code-api:latest
+          echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u helouich --password-stdin
+          docker push helouich/qr-code-api:latest
